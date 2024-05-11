@@ -35,6 +35,7 @@ typedef struct s_game
 	void	*win;
 	t_map	*map;
 	t_image	*background;
+	t_image	*tile;
 }	t_game;
 
 t_map	*map_init(char value);
@@ -53,9 +54,13 @@ t_map	*map_parse_file(char *filename);
 
 t_image	*image_init(t_game *game, int width, int height);
 
+t_image	*image_init_from_xpm(t_game *game, char *xpm_file);
+
 void	image_destroy(t_game *game, t_image *image);
 
 void	image_paint(t_image *image, int x, int y, int color);
+
+void	image_insert(t_image *image, t_image *insert, int x, int y);
 
 void	game_init(char *map_file);
 

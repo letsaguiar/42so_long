@@ -8,6 +8,8 @@ void	game_destroy(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->background)
 		image_destroy(game, game->background);
+	if (game->tile)
+		image_destroy(game, game->tile);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);

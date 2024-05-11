@@ -67,6 +67,17 @@ static void	game_init_background(t_game *game)
 	}
 }
 
+static void	game_init_tile(t_game *game)
+{
+	game->tile = image_init_from_xpm(game, "assets/tile.xpm");
+	if (!game->tile)
+	{
+		game_destroy(game);
+		ft_printf("Error: Minilibx Error");
+		exit(MLX_ERROR);
+	}
+}
+
 static void	game_init_hooks(t_game *game)
 {
 	mlx_hook(game->win, DestroyNotify, StructureNotifyMask, event_close_button_press, game);
@@ -82,6 +93,7 @@ void	game_init(char *map_file)
 	game_init_mlx(&game);
 	game_init_window(&game);
 	game_init_background(&game);
+	game_init_tile(&game);
 
 	game_init_hooks(&game);
 	mlx_loop(game.mlx);
