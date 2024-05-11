@@ -18,11 +18,23 @@ typedef struct s_map
 	struct s_map	*next;
 }	t_map;
 
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_image;
+
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
 	t_map	*map;
+	t_image	*background;
 }	t_game;
 
 t_map	*map_init(char value);
@@ -39,6 +51,12 @@ t_map	*map_get_position(t_map *map, int x, int y);
 
 t_map	*map_parse_file(char *filename);
 
+t_image	*image_init(t_game *game, int width, int height);
+
+void	image_destroy(t_game *game, t_image *image);
+
+void	image_paint(t_image *image, int x, int y, int color);
+
 void	game_init(char *map_file);
 
 void	game_destroy(t_game *game);
@@ -46,5 +64,7 @@ void	game_destroy(t_game *game);
 int		event_close_button_press(t_game *game);
 
 int		event_key_release(int keycode, t_game *game);
+
+int		event_frame_render(t_game *game);
 
 #endif
