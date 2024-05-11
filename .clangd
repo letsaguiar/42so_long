@@ -4,3 +4,4 @@ CompileFlags:
     - -Wextra
     - -Werror
     - -I/home/leticia/so_long/include
+    - -I/home/leticia/so_long/libft
