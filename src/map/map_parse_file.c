@@ -8,6 +8,7 @@ t_map	*map_parse_file(char *filename)
 	t_map	*append;
 
 	fd = open(filename, O_RDONLY);
+	map = NULL;
 	while (read(fd, &buffer, 1) > 0)
 	{
 		if (!map)

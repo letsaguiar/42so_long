@@ -3,12 +3,10 @@
 
 int main(int argc, char **argv)
 {
-	t_map	*map;
-
-	if (argc < 2 || !(map = map_parse_file(argv[1])))
+	if (argc < 2)
 	{
 		ft_printf("Error: Invalid Argument");
 		return (ARGUMENT_ERROR);
 	}
-	return (0);
+	game_init(argv[1]);
 }

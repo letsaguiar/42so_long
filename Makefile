@@ -1,7 +1,7 @@
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
 CINCLUDES := -Iinclude -Ilibft
-CLIBS := -Llibft -lft
+CLIBS := -lmlx -lX11 -lXext -Llibft -lft
 
 SRC_FILES := $(wildcard src/*.c) $(wildcard src/**/*.c)
 OBJ_FILES := $(subst .c,.o,$(SRC_FILES))
