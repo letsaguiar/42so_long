@@ -5,6 +5,9 @@
 # define ARGUMENT_ERROR 1
 # define MLX_ERROR 2
 
+/* Game */
+# define GAME_BLOCK_SIZE 48
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -17,6 +20,14 @@ typedef struct s_map
 	char			value;
 	struct s_map	*next;
 }	t_map;
+
+typedef struct s_application
+{
+	void	*mlx;
+	void	*win;
+	int		width;
+	int		height;
+}	t_application;
 
 typedef struct s_image
 {
@@ -38,19 +49,23 @@ typedef struct s_game
 	t_image	*tile;
 }	t_game;
 
-t_map	*map_init(char value);
+t_map			*map_init(char value);
 
-void	map_destroy(t_map *map);
+void			map_destroy(t_map *map);
 
-void	map_append(t_map *map, t_map *append);
+void			map_append(t_map *map, t_map *append);
 
-int		map_get_width(t_map *map);
+int				map_get_width(t_map *map);
 
-int		map_get_height(t_map *map);
+int				map_get_height(t_map *map);
 
-t_map	*map_get_position(t_map *map, int x, int y);
+t_map			*map_get_position(t_map *map, int x, int y);
 
-t_map	*map_parse_file(char *filename);
+t_map			*map_parse_file(char *filename);
+
+t_application	*app_init(t_application *app, int width, int height, char *title);
+
+void			app_destroy(t_application *app);
 
 t_image	*image_init(t_game *game, int width, int height);
 
@@ -62,7 +77,7 @@ void	image_paint(t_image *image, int x, int y, int color);
 
 void	image_insert(t_image *image, t_image *insert, int x, int y);
 
-void	game_init(char *map_file);
+void	game_init(t_application *app);
 
 void	game_destroy(t_game *game);
 
