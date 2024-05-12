@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 	{
 		ft_printf("Error: Invalid Argument");
 		return (ARGUMENT_ERROR);
+
 	}
 	if (!(app = app_init(map_get_width(map), map_get_height(map), "So Long")))
 	{

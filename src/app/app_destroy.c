@@ -9,6 +9,7 @@ void	app_destroy(t_application *app)
 	if (app->mlx)
 	{
 		mlx_destroy_display(app->mlx);
-		free(app);
+		free(app->mlx);
 	}
+	free(app);
 }
