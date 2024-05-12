@@ -1,3 +1,4 @@
+#include "libft.h"
 #include "so_long.h"
 
 // static void	game_init_map(t_game *game, char *map_file)
@@ -84,7 +85,14 @@
 // 	mlx_loop_hook(game->mlx, event_frame_render, game);
 // }
 
-void	game_init(t_application *app)
+t_game	*game_init(t_application *app, t_map *map)
 {
-	mlx_loop(app->mlx);
+	t_game	*game;
+
+	game = ft_calloc(1, sizeof (t_game));
+	if (!game)
+		return (NULL);
+	game->app = app;
+	game->map = map;
+	return (game);
 }

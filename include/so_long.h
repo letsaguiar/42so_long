@@ -4,6 +4,7 @@
 /* Errors */
 # define ARGUMENT_ERROR 1
 # define MLX_ERROR 2
+# define GAME_ERROR 3
 
 /* Game */
 # define GAME_BLOCK_SIZE 48
@@ -42,11 +43,8 @@ typedef struct s_image
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	t_map	*map;
-	t_image	*background;
-	t_image	*tile;
+	t_application	*app;
+	t_map			*map;
 }	t_game;
 
 t_map			*map_init(char value);
@@ -63,7 +61,7 @@ t_map			*map_get_position(t_map *map, int x, int y);
 
 t_map			*map_parse_file(char *filename);
 
-t_application	*app_init(t_application *app, int width, int height, char *title);
+t_application	*app_init(int width, int height, char *title);
 
 void			app_destroy(t_application *app);
 
@@ -77,9 +75,11 @@ void	image_paint(t_image *image, int x, int y, int color);
 
 void	image_insert(t_image *image, t_image *insert, int x, int y);
 
-void	game_init(t_application *app);
+t_game			*game_init(t_application *app, t_map *map);
 
-void	game_destroy(t_game *game);
+void			game_destroy(t_game *game);
+
+void			game_run(t_game *game);
 
 int		event_close_button_press(t_game *game);
 
