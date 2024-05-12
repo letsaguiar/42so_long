@@ -1,17 +1,17 @@
 #include "so_long.h"
 #include <mlx.h>
 
-t_image	*image_init(t_game *game, int width, int height)
+t_image	*image_init(t_application *app, int width, int height)
 {
 	t_image	*image;
 
 	image = malloc(sizeof (t_image));
 	if (!image)
 		return (NULL);
-	image->img = mlx_new_image(game->mlx, width, height);
+	image->img = mlx_new_image(app->mlx, width, height);
 	if (!image->img)
 	{
-		image_destroy(game, image);
+		image_destroy(app, image);
 		return (NULL);
 	}
 	image->addr = mlx_get_data_addr(
@@ -22,7 +22,7 @@ t_image	*image_init(t_game *game, int width, int height)
 	);
 	if (!image->addr)
 	{
-		image_destroy(game, image);
+		image_destroy(app, image);
 		return (NULL);
 	}
 	image->width = width;

@@ -1,7 +1,7 @@
 #include "so_long.h"
 #include <mlx.h>
 
-t_image	*image_init_from_xpm(t_game *game, char *xpm_file)
+t_image	*image_init_from_xpm(t_application *app, char *xpm_file)
 {
 	t_image	*image;
 
@@ -9,14 +9,14 @@ t_image	*image_init_from_xpm(t_game *game, char *xpm_file)
 	if (!image)
 		return (NULL);
 	image->img = mlx_xpm_file_to_image(
-		game->mlx,
+		app->mlx,
 		xpm_file,
 		&image->width,
 		&image->height
 	);
 	if (!image->img)
 	{
-		image_destroy(game, image);
+		image_destroy(app, image);
 		return (NULL);
 	}
 	image->addr = mlx_get_data_addr(
