@@ -30,10 +30,22 @@ typedef struct s_app
 	int		height;
 }	t_app;
 
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_image;
+
 typedef struct s_game
 {
 	t_map	*map;
 	t_app	*app;
+	t_image	*background;
 }	t_game;
 
 t_map	*map_init(char value);
@@ -54,7 +66,17 @@ t_app	*app_init(int width, int height, char *title);
 
 void	app_destroy(t_app *app);
 
-t_game	*game_init(t_map *map, t_app *app);
+t_image	*image_init(t_app *app, int width, int height);
+
+void	image_destroy(t_app *app, t_image *image);
+
+void	image_paint(t_image *image, int x, int y, int color);
+
+t_image	*background_init(t_app *app);
+
+void	background_destroy(t_app *app, t_image *background);
+
+t_game	*game_init(t_map *map, t_app *app, t_image *background);
 
 void	game_destroy(t_game *game);
 
@@ -63,5 +85,7 @@ void	game_run(t_game *game);
 int		event_close_button_press(t_game *game);
 
 int		event_key_release(int keycode, t_game *game);
+
+int		event_render(t_game *game);
 
 #endif
