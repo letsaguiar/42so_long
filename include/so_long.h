@@ -7,7 +7,9 @@
 # define GAME_ERROR 3
 
 /* Game */
-# define GAME_BLOCK_SIZE 16
+# ifndef GAME_BLOCK_SIZE
+#  define GAME_BLOCK_SIZE 48
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>

@@ -4,21 +4,17 @@ CINCLUDES := -Iinclude -Ilibft
 CLIBS := -lmlx -lX11 -lXext -Llibft -lft
 
 SRC_FILES := $(wildcard src/*.c) $(wildcard src/**/*.c)
-OBJ_FILES := $(subst .c,.o,$(SRC_FILES))
 
 NAME := so_long
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
+$(NAME): $(SRC_FILES)
 	make -C libft
-	$(CC) $(CFLAGS) $(CINCLUDES) -o $@ $^ $(CLIBS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(CINCLUDES) -o $@ -c $<
+	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(CLIBS)
 
 clean:
 	rm -f $(OBJ_FILES)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
