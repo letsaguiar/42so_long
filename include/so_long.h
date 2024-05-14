@@ -7,7 +7,7 @@
 # define GAME_ERROR 3
 
 /* Game */
-# define GAME_BLOCK_SIZE 48
+# define GAME_BLOCK_SIZE 16
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -46,6 +46,7 @@ typedef struct s_game
 	t_map	*map;
 	t_app	*app;
 	t_image	*background;
+	t_image	*tiles;
 }	t_game;
 
 t_map	*map_init(char value);
@@ -68,15 +69,23 @@ void	app_destroy(t_app *app);
 
 t_image	*image_init(t_app *app, int width, int height);
 
+t_image	*image_init_from_xpm(t_app *app, char *filename);
+
 void	image_destroy(t_app *app, t_image *image);
 
 void	image_paint(t_image *image, int x, int y, int color);
+
+void	image_copy(t_image *buffer, t_image *image, int x, int y);
 
 t_image	*background_init(t_app *app);
 
 void	background_destroy(t_app *app, t_image *background);
 
-t_game	*game_init(t_map *map, t_app *app, t_image *background);
+t_image	*tiles_init(t_app *app, t_map *map);
+
+void	tiles_destroy(t_app *app, t_image *tiles);
+
+t_game	*game_init(t_map *map, t_app *app, t_image *background, t_image *tiles);
 
 void	game_destroy(t_game *game);
 

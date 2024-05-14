@@ -6,6 +6,7 @@ int main(int argc, char **argv)
 	t_map	*map;
 	t_app	*app;
 	t_image	*background;
+	t_image	*tiles;
 	t_game	*game;
 
 	if (argc < 2 || !(map = map_parse_file(argv[1])))
@@ -14,14 +15,15 @@ int main(int argc, char **argv)
 		return (ARGUMENT_ERROR);
 	}
 	if (
-		!(app = app_init(map_get_width(map), map_get_height(map), "So Long"))
+		!(app = app_init(map_get_width(map) * GAME_BLOCK_SIZE, map_get_height(map) * GAME_BLOCK_SIZE, "So Long"))
 		|| !(background = background_init(app))
+		|| !(tiles = tiles_init(app, map))
 	)
 	{
-		ft_printf("Error: Invalid Argument");
+		ft_printf("Error: ");
 		return (MLX_ERROR);
 	}
-	if (!(game = game_init(map, app, background)))
+	if (!(game = game_init(map, app, background, tiles)))
 	{
 		ft_printf("Error: Game Error");
 		return (GAME_ERROR);

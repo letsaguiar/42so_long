@@ -10,5 +10,5 @@ int	map_get_width(t_map *map)
 		map = map->next;
 		width++;
 	}
-	return (width * GAME_BLOCK_SIZE);
+	return (width);
 }

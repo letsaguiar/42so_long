@@ -11,5 +11,5 @@ int	map_get_height(t_map *map)
 			height++;
 		map = map->next;
 	}
-	return (height * GAME_BLOCK_SIZE);
+	return (height);
 }
