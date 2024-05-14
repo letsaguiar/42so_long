@@ -22,18 +22,46 @@ typedef struct s_map
 	struct s_map	*next;
 }	t_map;
 
-t_map			*map_init(char value);
+typedef struct s_app
+{
+	void	*mlx;
+	void	*win;
+	int		width;
+	int		height;
+}	t_app;
 
-void			map_destroy(t_map *map);
+typedef struct s_game
+{
+	t_map	*map;
+	t_app	*app;
+}	t_game;
 
-void			map_append(t_map *map, t_map *append);
+t_map	*map_init(char value);
 
-int				map_get_width(t_map *map);
+void	map_destroy(t_map *map);
 
-int				map_get_height(t_map *map);
+void	map_append(t_map *map, t_map *append);
 
-t_map			*map_get_position(t_map *map, int x, int y);
+int		map_get_width(t_map *map);
 
-t_map			*map_parse_file(char *filename);
+int		map_get_height(t_map *map);
+
+t_map	*map_get_position(t_map *map, int x, int y);
+
+t_map	*map_parse_file(char *filename);
+
+t_app	*app_init(int width, int height, char *title);
+
+void	app_destroy(t_app *app);
+
+t_game	*game_init(t_map *map, t_app *app);
+
+void	game_destroy(t_game *game);
+
+void	game_run(t_game *game);
+
+int		event_close_button_press(t_game *game);
+
+int		event_key_release(int keycode, t_game *game);
 
 #endif
