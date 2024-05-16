@@ -49,6 +49,7 @@ typedef struct s_game
 	t_app	*app;
 	t_image	*background;
 	t_image	*tiles;
+	t_image	**coins;
 }	t_game;
 
 t_map	*map_init(char value);
@@ -87,7 +88,13 @@ t_image	*tiles_init(t_app *app, t_map *map);
 
 void	tiles_destroy(t_app *app, t_image *tiles);
 
-t_game	*game_init(t_map *map, t_app *app, t_image *background, t_image *tiles);
+t_image	**coins_init(t_app *app);
+
+void	coins_destroy(t_app *app, t_image **coins);
+
+t_image	*coins_insert(t_image **coins);
+
+t_game	*game_init(t_map *map, t_app *app, t_image *background, t_image *tiles, t_image **coins);
 
 void	game_destroy(t_game *game);
 
