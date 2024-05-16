@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	if (
 		!(app = app_init(map_get_width(map) * GAME_BLOCK_SIZE, map_get_height(map) * GAME_BLOCK_SIZE, "So Long"))
 		|| !(background = background_init(app))
-		|| !(tiles = tiles_init(app, map))
+		|| !(tiles = tiles_init(app))
 		|| !(coins = coins_init(app))
 	)
 	{

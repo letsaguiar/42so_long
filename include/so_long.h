@@ -84,15 +84,19 @@ t_image	*background_init(t_app *app);
 
 void	background_destroy(t_app *app, t_image *background);
 
-t_image	*tiles_init(t_app *app, t_map *map);
+void	background_insert(t_image *background, t_image *buffer);
+
+t_image	*tiles_init(t_app *app);
 
 void	tiles_destroy(t_app *app, t_image *tiles);
+
+void	tiles_insert(t_image *tiles, t_image *buffer, t_map *map);
 
 t_image	**coins_init(t_app *app);
 
 void	coins_destroy(t_app *app, t_image **coins);
 
-t_image	*coins_insert(t_image **coins);
+void	coins_insert(t_image **coins, t_image *buffer, t_map *map);
 
 t_game	*game_init(t_map *map, t_app *app, t_image *background, t_image *tiles, t_image **coins);
 
